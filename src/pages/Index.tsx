@@ -46,11 +46,16 @@ const Index = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8000/verificar_notas?data_inicio=${dataInicio}&data_fim=${dataFim}&formato=json`, {
+      const response = await fetch(`http://localhost:8000/verificar_notas`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        body: JSON.stringify({
+          data_inicio: dataInicio,
+          data_fim: dataFim,
+          formato: 'json'
+        })
       });
       
       if (!response.ok) throw new Error('Erro ao consultar dados');
