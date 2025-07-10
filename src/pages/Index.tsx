@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Calendar, Download, Upload, FileText, Package, Building, BarChart3 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -46,16 +45,11 @@ const Index = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8000/verificar_notas`, {
+      const response = await fetch(`http://localhost:8000/verificar_notas?data_inicio=${dataInicio}&data_fim=${dataFim}&formato=json`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          data_inicio: dataInicio,
-          data_fim: dataFim,
-          formato: 'json'
-        })
+        }
       });
       
       if (!response.ok) throw new Error('Erro ao consultar dados');
